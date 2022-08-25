@@ -313,22 +313,7 @@ selectedItemContainer.addEventListener("DOMSubtreeModified", ()=> {
     basketCount.textContent =  arr;
 })
 
-selectedItemContainer.addEventListener('DOMSubtreeModified', ()=> {
-    let arr = [];
-   let itemsInBasket = document.querySelectorAll('.selected__item'); 
-   
-   itemsInBasket.forEach(el => {
-    arr.push({
-        'author': el.querySelector('.selected-item__author').textContent,
-        'q-ty': el.querySelector('.quantity').value,
-        'image': el.querySelector('.selected-image').src,
-        'name' : el.querySelector('.selected-item__name').textContent,
-        'price-item': el.querySelector('.price-amount').textContent,
-        'sign' : el.querySelector('.price-sign').textContent,
-    })
-   })
-    localStorage.setItem('book_names', JSON.stringify(arr));
-})
+
 cartContent.addEventListener('DOMSubtreeModified', ()=> {
     let itemsInBasket = document.querySelectorAll('.selected__item'); 
     if(itemsInBasket.length <= 0) {
@@ -347,6 +332,24 @@ booksContainer.addEventListener('click', (event) => {
         event.target.closest('div').classList.add('tinted')
       }
     }})
+
+    cartContent.addEventListener('DOMSubtreeModified', ()=> {
+        let arr = [];
+       let itemsInBasket = document.querySelectorAll('.selected__item'); 
+       if(itemsInBasket != null){
+       itemsInBasket.forEach(el => {
+        arr.push({
+            'author': el.querySelector('.selected-item__author').textContent,
+            'q-ty': el.querySelector('.quantity').value,
+            'image': el.querySelector('.selected-image').src,
+            'name' : el.querySelector('.selected-item__name').textContent,
+            'price-item': el.querySelector('.price-amount').textContent,
+            'sign' : el.querySelector('.price-sign').textContent,
+        }) 
+       })}
+        localStorage.setItem('book_names', JSON.stringify(arr));
+    })
+    
 function takeBasket() {
 
     let selectedBooks  = JSON.parse(localStorage.getItem("book_names"));   
@@ -444,6 +447,5 @@ function addFooter(){
     footerWrapper.appendChild(school);
 }
 addFooter();
-
 
 

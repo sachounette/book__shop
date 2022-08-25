@@ -61,6 +61,7 @@ logo.classList.add('logo');
     validName.setAttribute('required', 'required');
     validName.placeholder = 'First Name';
     validName.setAttribute("minlength","4");
+    validName.setAttribute("pattern","[A-Za-zА-Яа-яЁё]+");
     validDiv.appendChild(validName);
 
   
@@ -71,6 +72,7 @@ logo.classList.add('logo');
     validSurname.setAttribute('required', 'required');
     validSurname.placeholder = 'Last Name';
     validSurname.setAttribute("minlength","5");
+    validSurname.setAttribute("pattern","[A-Za-zА-Яа-яЁё]+");
     validDiv.appendChild(validSurname);
 
    const datem = minDate();
@@ -89,6 +91,7 @@ logo.classList.add('logo');
     validStreet.id = 'valid-street';
     validStreet.setAttribute('type', 'text');
     validStreet.setAttribute('required', 'required');
+    validStreet.setAttribute("minlength","5");
     validStreet.placeholder = 'Street';
     validDiv.appendChild(validStreet);
 
@@ -98,6 +101,8 @@ logo.classList.add('logo');
     validHouse.setAttribute('type', 'text');
     validHouse.setAttribute('required', 'required');
     validHouse.placeholder = 'House number';
+    validHouse.setAttribute("pattern","[0-9]+");
+
     validDiv.appendChild(validHouse);
 
     const validFlat= document.createElement('input');
@@ -106,6 +111,8 @@ logo.classList.add('logo');
     validFlat.setAttribute('type', 'text');
     validFlat.setAttribute('required', 'required');
     validFlat.placeholder = 'Flat number';
+    validFlat.setAttribute("pattern","^[1-9]+[0-9-]*$");
+
     validDiv.appendChild(validFlat);
 
 
@@ -211,18 +218,35 @@ logo.classList.add('logo');
       window.location = './index.html';
     })
     const fiel = document.querySelectorAll('.valid-form-item');
-  document.addEventListener('input', (e => {
-    fiel.forEach(el => console.log(!!el.value))
-  }))
-   
+
+ document.addEventListener('focusout', () => {
+  let sum = 0;
+    fiel.forEach(el => {
+      if(el.checkValidity()){
+        sum++;
+        sum == 6 ? (competeBtn.removeAttribute('disabled', 'disabled')) : (competeBtn.setAttribute('disabled', 'disabled'));
+      }   
+
+    }
+      )
+
+  })
 
    competeBtn.addEventListener('click', (e)=> {
     e.preventDefault();
+
     showMessage();
     })
     
 }
+function formMess(){
+console.log('AYAYA');
+}
+formMess()
 function showMessage(){
+  
+  const ordered = document.createElement('p');
+
   validationFormWrapper.innerHTML = '';
 
   const thankMessage = document.createElement('h1');
@@ -230,6 +254,13 @@ function showMessage(){
   thankMessage.textContent = 'Your order is complete. Thank you! :)';
 
   validationFormWrapper.appendChild(thankMessage);
+  validationFormWrapper.appendChild(ordered);
+
+
+ let arr = [];
+ localStorage.setItem('book_names', JSON.stringify(arr));
+ localStorage.setItem('total_amount', '0');
+
 
 }
 createValidationForm()

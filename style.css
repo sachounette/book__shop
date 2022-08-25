@@ -429,6 +429,10 @@ input[type=number]::-webkit-inner-spin-button {
   border-radius: 14px;
   text-align: center;
   cursor: pointer;
+ background-color:  rgb(197, 170, 170);
+}
+.complete-btn:disabled{
+  background-color: rgb(219, 216, 216); 
 }
 .return-btn {
   max-width: 200px;
@@ -441,6 +445,10 @@ input[type=number]::-webkit-inner-spin-button {
   text-align: center;
   cursor: pointer;
   background-color: rgb(197, 170, 170);}
+  .complete-btn:enabled:hover, .return-btn:hover, .confirm-order-button:enabled:hover {
+    background-color: rgb(163, 131, 131);
+
+  }
 .required-fields {
   max-width: 1010px;
   display: flex;
@@ -577,7 +585,7 @@ padding-top: 20px;
 
 }
 .bill-wrapper {
-  padding: 20px;
+  padding: 40px;
   display: flex;
   gap: 30px;
   flex-direction: column;
@@ -587,18 +595,18 @@ padding-top: 20px;
 .bill::after, .bill::before {
   position: absolute;
 white-space: nowrap;
-  content: '* * * * * * * * * * * * * * * * *';
+  content: '== == == == == == == == == == ==';
   width: 100%;
-  left: 5px;
+  left: 10px;
   margin: 10px;
 }
 
 .bill::before {
-  top: 0;
+  top: 30px;
 }
 
 .bill::after {
-  top: 60px;
+  top: 80px;
 }
 .total {
   position: relative;
@@ -616,6 +624,9 @@ white-space: nowrap;
 }
 .price-b {
  white-space: nowrap;
+ width: 60px;
+ text-align: right;
+
 }
 
 .book-item {
@@ -636,4 +647,10 @@ white-space: nowrap;
   transition: 0.5s;
   opacity: 1;
   visibility: visible;
+}
+.thanks {
+  font-size: 36px;
+  margin: 35px;
+  font-weight: 200;
+  font-family: 'Lora';
 }
