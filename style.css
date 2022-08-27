@@ -29,8 +29,8 @@ header {
 }
 .header__wrapper {
 
-    padding: 30px 0;
-    max-width: 1440px;
+  padding: 30px 10px;   
+   max-width: 1440px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -465,6 +465,7 @@ input[type=number]::-webkit-inner-spin-button {
   column-gap: 15px;
   flex-wrap: wrap;
 
+
 }
 label {
 margin-right: 15px;
@@ -483,7 +484,7 @@ margin-right: 15px;
   max-width: 350px;
 }
 #valid-date {
-  max-width: 253px;
+  max-width: 220px;
 }
 
 .validation-title {
@@ -559,7 +560,7 @@ footer {
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 25px 0;
+  padding: 25px 10px;
 }
 a { 
   text-decoration: none; /* Отменяем подчеркивание у ссылки */
@@ -590,6 +591,7 @@ font-family: 'Bill';
 font-size: 24px;
 text-align: center;
 padding-top: 20px;
+white-space: nowrap;
 
 }
 .bill-wrapper {
@@ -624,7 +626,7 @@ white-space: nowrap;
 .total::before {
   position: absolute;  
 
-  content: '-------------';
+  content: '----------';
   width: 100%;
   white-space: nowrap;
 
@@ -689,3 +691,50 @@ white-space: nowrap;
   position: relative;
 }
 
+@media only screen and (max-width: 1200px) {
+.bill{
+  display: none;
+}
+.valid-div {
+  justify-content: center;
+}
+.footer__wrapper {
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px 0;
+}
+.btn-div {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.validation-title {
+  margin: 0 auto;
+  text-align: center;
+}
+.books__container {
+  grid-template-columns: repeat(2, 1fr);
+  padding: 30px;
+}
+.wallpaper {
+  height: 290px;
+}
+
+}
+
+@media only screen and (max-width: 768px) {
+  .books__container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .wallpaper {
+    height: 160px;
+  }
+  .cart__content {
+    max-width: 305px;
+  }
+  .book {
+    max-width: 280px;
+  }
+  .book__popUp{
+    height: 100%;
+  }
+}

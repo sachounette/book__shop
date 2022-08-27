@@ -420,15 +420,11 @@ return tomorrow;
 }
 
 document.addEventListener('input', (e)=> {
-
   let myVal = e.target.closest('div').querySelector('.invalid-field');
   if(e.target.checkValidity()){
     myVal.classList.add('invalid-field-hidden');
   }
   else {
     myVal.classList.remove('invalid-field-hidden');
-   
-
-
   }
 })
