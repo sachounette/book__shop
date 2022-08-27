@@ -336,7 +336,7 @@ booksContainer.addEventListener('click', (event) => {
     cartContent.addEventListener('DOMSubtreeModified', ()=> {
         let arr = [];
        let itemsInBasket = document.querySelectorAll('.selected__item'); 
-       if(itemsInBasket != null){
+     
        itemsInBasket.forEach(el => {
         arr.push({
             'author': el.querySelector('.selected-item__author').textContent,
@@ -346,15 +346,14 @@ booksContainer.addEventListener('click', (event) => {
             'price-item': el.querySelector('.price-amount').textContent,
             'sign' : el.querySelector('.price-sign').textContent,
         }) 
-       })}
+       })
         localStorage.setItem('book_names', JSON.stringify(arr));
     })
     
 function takeBasket() {
 
     let selectedBooks  = JSON.parse(localStorage.getItem("book_names"));   
-
-
+    if(!selectedBooks) return;
 
     for(let i = 0; i<selectedBooks.length;i++){
         const selectedItem = document.createElement('div');

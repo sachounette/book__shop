@@ -737,4 +737,10 @@ white-space: nowrap;
   .book__popUp{
     height: 100%;
   }
+  .to-delete {
+    width: 99px;
+  }
+  input[type = number] {
+    width: 15px;
+  }
 }
