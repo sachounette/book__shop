@@ -295,10 +295,19 @@ const date = `${document.getElementById('valid-date').value}`;
   thankMessage.classList.add('thanks')
   thankMessage.textContent =`Thank you, ${name}! Your order is complete :)`;
   ordered.textContent = `Delivery address is ${address}. Estimated delivery date: ${date}.`;
+  
+  const backtoShop = document.createElement('button');
+  backtoShop.classList.add('return-btn');
+  backtoShop.textContent = 'Back to Shop';
 
+  backtoShop.addEventListener('click', ()=> {
+    window.location = './index.html';
+
+})
 
   validationFormWrapper.appendChild(thankMessage);
   validationFormWrapper.appendChild(ordered);
+  validationFormWrapper.appendChild(backtoShop);
 
 
  let arr = [];
