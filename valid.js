@@ -53,7 +53,10 @@ logo.classList.add('logo');
     validDiv.classList.add('valid-div');
     requiredFields.appendChild(validDiv);
 
-  
+    const invSpan = document.createElement('div');
+    invSpan.classList.add('cont-input');
+    validDiv.appendChild(invSpan);
+
     const validName = document.createElement('input');
     validName.classList.add('valid-form-item');
     validName.id = 'valid-name';
@@ -62,9 +65,14 @@ logo.classList.add('logo');
     validName.placeholder = 'First Name';
     validName.setAttribute("minlength","4");
     validName.setAttribute("pattern","[A-Za-zА-Яа-яЁё]+");
-    validDiv.appendChild(validName);
+    invSpan.appendChild(validName);
+    invSpan.appendChild(invalid)
 
-  
+    const invSpanS = document.createElement('div');
+    invSpanS.classList.add('cont-input');
+    validDiv.appendChild(invSpanS);
+    
+
     const validSurname = document.createElement('input');
     validSurname.classList.add('valid-form-item');
     validSurname.id = 'valid-surname';
@@ -73,7 +81,11 @@ logo.classList.add('logo');
     validSurname.placeholder = 'Last Name';
     validSurname.setAttribute("minlength","5");
     validSurname.setAttribute("pattern","[A-Za-zА-Яа-яЁё]+");
-    validDiv.appendChild(validSurname);
+    invSpanS.appendChild(validSurname);
+    const invalids = document.createElement('span');
+    invalids.textContent = 'The field is invalid';
+    invalids.classList.add('invalid-field');
+    invSpanS.appendChild(invalids);
 
    const datem = minDate();
 
@@ -86,6 +98,10 @@ logo.classList.add('logo');
     validDate.setAttribute('value', datem);
     validDiv.appendChild(validDate);
 
+    const invSpanSt = document.createElement('div');
+    invSpanSt.classList.add('cont-input');
+    validDiv.appendChild(invSpanSt);
+
     const validStreet = document.createElement('input');
     validStreet.classList.add('valid-form-item');
     validStreet.id = 'valid-street';
@@ -93,7 +109,15 @@ logo.classList.add('logo');
     validStreet.setAttribute('required', 'required');
     validStreet.setAttribute("minlength","5");
     validStreet.placeholder = 'Street';
-    validDiv.appendChild(validStreet);
+    invSpanSt.appendChild(validStreet);
+    const invalidst = document.createElement('span');
+    invalidst.textContent = 'The field is invalid';
+    invalidst.classList.add('invalid-field');
+    invSpanSt.appendChild(invalidst);
+
+    const invSpanH = document.createElement('div');
+    invSpanH.classList.add('cont-input');
+    validDiv.appendChild(invSpanH);
 
     const validHouse= document.createElement('input');
     validHouse.classList.add('valid-form-item');
@@ -103,8 +127,15 @@ logo.classList.add('logo');
     validHouse.placeholder = 'House number';
     validHouse.setAttribute("pattern","[0-9]+");
 
-    validDiv.appendChild(validHouse);
+    invSpanH.appendChild(validHouse);
+    const invalidH = document.createElement('span');
+    invalidH.textContent = 'The field is invalid';
+    invalidH.classList.add('invalid-field');
+    invSpanH.appendChild(invalidH);
 
+    const invSpanF= document.createElement('div');
+    invSpanF.classList.add('cont-input');
+    validDiv.appendChild(invSpanF);
     const validFlat= document.createElement('input');
     validFlat.classList.add('valid-form-item');
     validFlat.id = 'valid-flat';
@@ -113,7 +144,11 @@ logo.classList.add('logo');
     validFlat.placeholder = 'Flat number';
     validFlat.setAttribute("pattern","^[1-9]+[0-9-]*$");
 
-    validDiv.appendChild(validFlat);
+    invSpanF.appendChild(validFlat);
+    const invalidf = document.createElement('span');
+    invalidf.textContent = 'The field is invalid';
+    invalidf.classList.add('invalid-field');
+    invSpanF.appendChild(invalidf);
 
 
     const payment = document.createElement('div');
@@ -201,17 +236,21 @@ logo.classList.add('logo');
       }
     })
 
+const btnDiv = document.createElement('div');
+btnDiv.classList.add('btn-div');
+requiredFields.append(btnDiv);
 
     const competeBtn = document.createElement('input');
     competeBtn.classList.add('complete-btn');
     competeBtn.setAttribute('type', 'Submit');
+    competeBtn.setAttribute('value', 'Finish order');
     competeBtn.setAttribute('disabled', 'disabled');
-    requiredFields.append(competeBtn);
+    btnDiv.append(competeBtn);
 
     const returnBtn = document.createElement('button');
     returnBtn.classList.add('return-btn');
     returnBtn.textContent = 'Return to Basket'
-    requiredFields.append(returnBtn);
+    btnDiv.append(returnBtn);
 
     returnBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -234,24 +273,29 @@ logo.classList.add('logo');
 
    competeBtn.addEventListener('click', (e)=> {
     e.preventDefault();
-
     showMessage();
     })
     
 }
-function formMess(){
-console.log('AYAYA');
-}
-formMess()
+
 function showMessage(){
-  
+
+const name = document.getElementById('valid-name').value;
+const address = `${document.getElementById('valid-house').value} ${document.getElementById('valid-street').value} Street, Apt. ${document.getElementById('valid-flat').value}`;
+const date = `${document.getElementById('valid-date').value}`;
+
   const ordered = document.createElement('p');
+  ordered.classList.add('mess');
 
   validationFormWrapper.innerHTML = '';
 
+  validationFormWrapper.classList.add('message');
+
   const thankMessage = document.createElement('h1');
   thankMessage.classList.add('thanks')
-  thankMessage.textContent = 'Your order is complete. Thank you! :)';
+  thankMessage.textContent =`Thank you, ${name}! Your order is complete :)`;
+  ordered.textContent = `Delivery address is ${address}. Estimated delivery date: ${date}.`;
+
 
   validationFormWrapper.appendChild(thankMessage);
   validationFormWrapper.appendChild(ordered);
@@ -365,3 +409,17 @@ function minDate() {
 setTimeout(minDate, 1000);
 return tomorrow;
 }
+
+document.addEventListener('input', (e)=> {
+
+  let myVal = e.target.closest('div').querySelector('.invalid-field');
+  if(e.target.checkValidity()){
+    myVal.classList.add('invalid-field-hidden');
+  }
+  else {
+    myVal.classList.remove('invalid-field-hidden');
+   
+
+
+  }
+})

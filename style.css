@@ -267,7 +267,7 @@ button:hover {
     width: 80px;
     height: 100px;
 }
-input[type = number] {
+ input[type = number]{
     border: none;
     outline: none;
     text-align: center;
@@ -421,6 +421,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 .complete-btn {
   max-width: 200px;
+  width: 100%;
   font-size: 18px;
   font-family: 'Lora';
   border: none;
@@ -436,6 +437,7 @@ input[type=number]::-webkit-inner-spin-button {
 }
 .return-btn {
   max-width: 200px;
+  width: 100%;
   font-size: 18px;
   font-family: 'Lora';
   border: none;
@@ -459,7 +461,8 @@ input[type=number]::-webkit-inner-spin-button {
 }
 .valid-div {
   display: flex;
-  gap: 15px;
+  row-gap: 30px;
+  column-gap: 15px;
   flex-wrap: wrap;
 
 }
@@ -524,10 +527,15 @@ margin-right: 15px;
 /*input:invalid{
   border: 2px solid #d36262;
 }
-.valid-form-item:valid {
-  border: 2px solid #4c9f33;
-}
 */
+.valid-form-item {
+  box-sizing: border-box;
+  height: 35px;
+}
+.valid-form-item:invalid {
+  border: 2px solid #9f2323;
+}
+
 footer {
   height: 150px;
   background-repeat: no-repeat;
@@ -559,7 +567,7 @@ a {
  } 
 .contact {
   color: white;
-  font-size: 30px;
+  font-size: 24px;
   display: flex;
   gap: 10px;
 }
@@ -647,6 +655,16 @@ white-space: nowrap;
   transition: 0.5s;
   opacity: 1;
   visibility: visible;
+  font-size: 14px;
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  transition: 0.5s;
+}
+.invalid-field-hidden{
+  opacity: 0;
+  visibility: hidden;
+  bottom: -10px;
 }
 .thanks {
   font-size: 36px;
@@ -654,3 +672,20 @@ white-space: nowrap;
   font-weight: 200;
   font-family: 'Lora';
 }
+.message {
+  flex-direction: column;
+
+}
+.mess {
+  font-size: 24px;
+  font-family: 'Lora';
+}
+.btn-div {
+  display: flex;
+  gap: 30px;
+
+}
+.cont-input{
+  position: relative;
+}
+
